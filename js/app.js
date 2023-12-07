@@ -22,9 +22,13 @@ class Presupuesto {
         this.gastos = [];
     }
 
+    nuevoGasto(gasto) {
+        this.gastos = [...this.gastos, gasto]
+        console.log(this.gastos);
+    }
+
 
 }
-
 
 
 class UI {
@@ -90,7 +94,7 @@ function agregarGasto(e) {
 
     //leer los gastos
     const nombre = document.querySelector('#gasto').value
-    const cantidad = document.querySelector('#cantidad').value
+    const cantidad = Number(document.querySelector('#cantidad').value)
 
     //Validar
     if (nombre === '' || cantidad === '') {
@@ -103,5 +107,13 @@ function agregarGasto(e) {
 
     }
 
-    console.log('Agregando Gasto');
+    // Generar un objeto con el gasto
+    const gasto = { nombre, cantidad, id: Date.now() } // lo contrario a desctructuring //object literal en hansmen
+
+    //Anade nuevo gast3134o
+    presupuesto.nuevoGasto(gasto);
+    //Mensaje correcto
+    ui.imprimirAlerta('Gasto agregado correctamente')
+    //Reinicia el formulario
+    formulario.reset();
 }
